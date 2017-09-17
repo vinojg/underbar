@@ -104,6 +104,25 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    var uniqArray = [];
+    _.each(array, function(item) {
+      if (uniqArray.indexOf(item)===-1) {
+        uniqArray.push(item)
+      }
+    });
+    if (iterator!==undefined) {
+      var uniqIterArray = [];
+      var iterArray = [];
+      _.each(uniqArray, function(item){
+        if (iterArray.indexOf(iterator(item))===-1) {
+          uniqIterArray.push(item);
+          iterArray.push(iterator(item));
+        }
+      });
+      return uniqIterArray; 
+    } else {
+      return uniqArray;
+    } 
   };
 
 
