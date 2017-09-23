@@ -337,6 +337,10 @@ _.reduce = function(collection, iterator, accumulator){
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    var parameter = Array.prototype.slice.call(arguments, 2); 
+    setTimeout(function(){
+      func.apply(this, parameter);
+    }, wait);
   };
 
 
