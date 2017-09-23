@@ -269,6 +269,14 @@ _.reduce = function(collection, iterator, accumulator){
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    _.each(arguments, function (item) {
+      _.each(item, function (value, property) {
+        if (obj[property] === undefined) {
+          obj[property] = value;         
+        }
+      });
+    });
+    return obj;  
   };
 
 
