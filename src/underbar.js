@@ -320,6 +320,14 @@ _.reduce = function(collection, iterator, accumulator){
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var uniqueArgumentResult = {};
+    return function(){
+    var argument = Array.prototype.join.call(arguments,"_");       
+    if (uniqueArgumentResult[argument] === undefined) { 
+      uniqueArgumentResult[argument] = func.apply(this, arguments); 
+    }
+    return uniqueArgumentResult[argument];
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
