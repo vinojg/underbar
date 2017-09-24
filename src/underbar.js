@@ -355,6 +355,14 @@ _.reduce = function(collection, iterator, accumulator){
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var elements = array.slice(0,array.length);
+    var shuffledArray = [];
+    while (elements.length>0) {
+      var index = Math.floor(Math.random()*elements.length);
+      shuffledArray.push(elements[index]);
+      elements.splice(index,1)
+    }
+    return shuffledArray;
   };
 
 
